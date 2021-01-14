@@ -10,7 +10,7 @@ import Footer from './components/Footer';
 import Banner from './components/Banner';
 import SearchBar from './components/SearchBar';
 import ResultsList from './components/ResultsList';
-import NominationsMondal from './components/NominationsModal';
+import NominationsModal from './components/modal/NominationsModal';
 
 import { Container, Row, Col } from 'react-bootstrap';
 
@@ -29,8 +29,6 @@ export default class App extends React.Component {
             error: null,
 
             showModal: false,
-
-            mode: 0,
         }
     };
 
@@ -86,7 +84,7 @@ export default class App extends React.Component {
         let { showModal } = this.state;
 
         if(showModal) {
-            return <NominationsMondal showModal={this.state.showModal}/>
+            return <NominationsModal showModal={this.state.showModal}/>
         }
 
         return null;
@@ -96,35 +94,20 @@ export default class App extends React.Component {
         let { nominations } = this.state;
 
         if(Object.keys(nominations).length === 5) {
-            return <Confetti width={window.innerWidth-50} height={window.innerHeight} numberOfPieces={400} recycle={false}/>;
+            return <Confetti style={{position: "absolute"}} height={window.innerHeight} numberOfPieces={400} recycle={false}/>;
         }
 
         return null;
     };
 
-    _toggleDarkLightMode() {
-        let { mode } = this.state;
-
-        if(mode === 0) {
-            this.setState({
-                mode: mode + 1,
-            });
-        } else {
-            this.setState({
-                mode: mode - 1,
-            });
-        }
-    };
-
     render() {
         return (
             <React.Fragment>
+                {this._renderConfetti()}
                 <div className="main">
-                    {this._renderConfetti()}
-                    <NominationsMondal _toggleNomination={(res) => this._toggleNomination(res)} nominations={this.state.nominations} showModal={this.state.showModal} _toggleShowModal={() => this._toggleShowModal()}/>
+                    <NominationsModal _toggleNomination={(res) => this._toggleNomination(res)} nominations={this.state.nominations} showModal={this.state.showModal} _toggleShowModal={() => this._toggleShowModal()}/>
                     <NavBar mode={this.state.mode} _toggleShowModal={() => this._toggleShowModal()} _toggleDarkLightMode={() => this._toggleDarkLightMode()} />
                     <Banner nominations={this.state.nominations} />
-        
                     <Container style={{paddingTop: "50px"}}>
                         <Row>
                             <Col md={{span: 8, offset: 2}}>

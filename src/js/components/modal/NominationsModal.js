@@ -18,11 +18,6 @@ export default class NominationsModal extends React.Component {
                                     <img style={{display: "flex"}} src={this.props.nominations[nomination].Poster} height="150px" width="125px" alt="poster"/>
                                 </Col>
 
-                                {/* <Col md={2} className="my-auto text-left">
-                                    <p style={{display: "block"}}>{this.props.nominations[nomination].Title}</p>
-                                    <p>{this.props.nominations[nomination].Year}</p>
-                                </Col> */}
-
                                 <Col md={8} className="my-auto text-center">
                                     <h5 className="title" style={{display: "block"}}>{this.props.nominations[nomination].Title}</h5>
                                     <p>({this.props.nominations[nomination].Year})</p>

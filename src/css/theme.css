@@ -1,6 +1,7 @@
 * {
     /* 200, 300, 700 */
     font-family: 'Poppins', sans-serif;
+    overflow-x: hidden !important;
 }
 
 .main {
@@ -24,6 +25,7 @@
 }
 
 .title {
+    overflow-y: hidden !important;
     font-weight: 700;
 }
 
@@ -35,7 +37,8 @@
 .nominate-jumbo {
     background-color: #F2F2F2 !important;
 }
-/* Nominate Button */
+
+/* Buttons */
 .nominate-btn {
     background-color: #018060 !important;
     border-radius: 50px !important;
@@ -50,6 +53,11 @@
     border-width: 0px !important;
 }
 
+.view-movie-details-btn {
+    background-color: transparent !important;
+    color: white !important;
+    border-width: 0px !important;
+}
 /* Col re-alignment */
 .col-md-6 {
     text-align: left !important;
