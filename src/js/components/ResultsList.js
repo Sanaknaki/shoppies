@@ -36,8 +36,6 @@ export default class ResultsList extends React.Component {
         const response = await axios.get(URL + `i=${id}`);
         
         if(response.data) {
-
-            console.log(response.data);
             let movieData = {
                 "director": response.data.Director,
                 "rating": response.data.imdbRating,
@@ -51,12 +49,12 @@ export default class ResultsList extends React.Component {
         }
     }
 
-    _renderMovieDetails(id) {
+    _renderMovieDetails(id, isNominated) {
         let { movieData } = this.state;
-
+    
         if(Object.keys(movieData).length !== 0 && movieData.imdbID === id) {
             return (
-                <Row style={{paddingTop: "20px", color: "#3E4348"}}>
+                <Row style={{paddingTop: "20px", color: (isNominated) ? "#FFFFFF" : "#3E4348"}}>
                     <Col md={4}>
                         🎬 {movieData.director}
                     </Col>
@@ -97,8 +95,8 @@ export default class ResultsList extends React.Component {
                     list.push(
                         <MovieResult 
                             res={res}
-                            isNominated={(nominations && nominations[res.imdbID])}
-                            _renderMovieDetails={(id) => this._renderMovieDetails(id)}
+                            isNominated={((nominations && nominations[res.imdbID]) ? true : false)}
+                            _renderMovieDetails={(id, is) => this._renderMovieDetails(id, is)}
                             _toggleViewMovie={(id) => this._toggleViewMovie(id)}
                             _renderButton={(res) => this._renderButton(res)}
                         />

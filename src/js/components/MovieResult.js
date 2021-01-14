@@ -19,7 +19,7 @@ export default class MovieResult extends React.Component {
                         </Col>
                     </Row>
 
-                    {this.props._renderMovieDetails(this.props.res.imdbID)}
+                    {this.props._renderMovieDetails(this.props.res.imdbID, this.props.isNominated)}
             
                     <Row>
                         <Col md={3} style={{paddingTop: "15px", paddingBottom: "15px"}}><hr style={{backgroundColor: "white"}} /></Col>
