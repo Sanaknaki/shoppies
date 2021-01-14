@@ -11,6 +11,7 @@ export default class NominationsModal extends React.Component {
             return <p>Start nominating some movies 🎥</p>
         } else {
             let list = [];
+
             for(let nomination in this.props.nominations) {
                 list.push(
                     <Nomination 

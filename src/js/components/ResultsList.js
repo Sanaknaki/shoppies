@@ -91,17 +91,28 @@ export default class ResultsList extends React.Component {
                 );
             } else {
                 let list = [];
-                for(let res of this.props.results) {
-                    list.push(
-                        <MovieResult 
+
+                list = this.props.results.map((res, index) => {
+                    return <MovieResult 
+                            key={index}
                             res={res}
                             isNominated={((nominations && nominations[res.imdbID]) ? true : false)}
                             _renderMovieDetails={(id, is) => this._renderMovieDetails(id, is)}
                             _toggleViewMovie={(id) => this._toggleViewMovie(id)}
                             _renderButton={(res) => this._renderButton(res)}
                         />
-                    );
-                }
+                });
+                // for(let res of this.props.results) {
+                //     list.push(
+                //         <MovieResult 
+                //             res={res}
+                //             isNominated={((nominations && nominations[res.imdbID]) ? true : false)}
+                //             _renderMovieDetails={(id, is) => this._renderMovieDetails(id, is)}
+                //             _toggleViewMovie={(id) => this._toggleViewMovie(id)}
+                //             _renderButton={(res) => this._renderButton(res)}
+                //         />
+                //     );
+                // }
         
                 return list;   
             }
