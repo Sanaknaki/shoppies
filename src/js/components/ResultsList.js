@@ -114,7 +114,7 @@ export default class ResultsList extends React.Component {
                                     <Col md={6} 
                                         className="text-center" style={{paddingTop: "15px", paddingBottom: "15px", cursor: "pointer", color: (nominations && nominations[res.imdbID]) ? "#FFFFFF" : "#3E4348"}} 
                                         onClick={() => this._toggleViewMovie(res.imdbID)}>
-                                        Toggle movie details
+                                        View movie details
                                     </Col>
                                     <Col md={3} style={{paddingTop: "15px", paddingBottom: "15px"}}><hr style={{backgroundColor: "white"}} /></Col>
                                 </Row>
