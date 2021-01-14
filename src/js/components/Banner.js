@@ -5,7 +5,11 @@ import { Container, Row, Col } from 'react-bootstrap';
 export default class Banner extends React.Component {
 
     _getNominationsRemaining() {
-        return 5 - Object.keys(this.props.nominations).length;
+        if(Object.keys(this.props.nominations).length === 5) {
+            return <span>You completed your nominations 🎉</span>;
+        } else {
+            return <span>You have {5 - Object.keys(this.props.nominations).length} nominations left</span>
+        }
     }
 
     render() {
@@ -19,7 +23,7 @@ export default class Banner extends React.Component {
                         </Col>
 
                         <Col md={6} className="my-auto text-center">
-                            <p style={{fontSize: "25px"}}><span>You have <b>{this._getNominationsRemaining()}</b> nominations left</span></p>
+                            <p style={{fontSize: "25px"}}>{this._getNominationsRemaining()}</p>
                         </Col>
                     </Row>
                 </Container>
