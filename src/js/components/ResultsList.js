@@ -3,7 +3,9 @@ import axios from 'axios';
 
 import { URL } from '../../constants';
 
-import { Jumbotron, Container, Col, Row, Button } from 'react-bootstrap';
+import MovieResult from './MovieResult';
+
+import { Col, Row, Button } from 'react-bootstrap';
 
 export default class ResultsList extends React.Component {
     constructor(props) {
@@ -93,33 +95,13 @@ export default class ResultsList extends React.Component {
                 let list = [];
                 for(let res of this.props.results) {
                     list.push(
-                        <Jumbotron style={{paddingBottom: "0px"}} className={((nominations && nominations[res.imdbID])) ? "nominated-jumbo" : "nominate-jumbo"}>
-                            <Container>
-                                <Row>
-                                    <Col md={6} className="d-flex justify-content-center">
-                                        <img style={{display: "flex"}} src={res.Poster} height="100%" width="auto" alt="poster"/>
-                                    </Col>
-    
-                                    <Col md={6} className="my-auto text-center" style={{color: (nominations && nominations[res.imdbID]) ? "#FFFFFF" : "#3E4348"}}>
-                                        <h3 className="title" style={{display: "block"}}>{res.Title}</h3>
-                                        <p>({res.Year})</p>
-                                        {this._renderButton(res)}
-                                    </Col>
-                                </Row>
+                        <MovieResult 
+                            res={res}
+                            isNominated={(nominations && nominations[res.imdbID])}
+                            _renderMovieDetails={(id) => this._renderMovieDetails(id)}
+                            _toggleViewMovie={(id) => this._toggleViewMovie(id)}
 
-                                {this._renderMovieDetails(res.imdbID)}
-                        
-                                <Row>
-                                    <Col md={3} style={{paddingTop: "15px", paddingBottom: "15px"}}><hr style={{backgroundColor: "white"}} /></Col>
-                                    <Col md={6} 
-                                        className="text-center" style={{paddingTop: "15px", paddingBottom: "15px", cursor: "pointer", color: (nominations && nominations[res.imdbID]) ? "#FFFFFF" : "#3E4348"}} 
-                                        onClick={() => this._toggleViewMovie(res.imdbID)}>
-                                        View movie details
-                                    </Col>
-                                    <Col md={3} style={{paddingTop: "15px", paddingBottom: "15px"}}><hr style={{backgroundColor: "white"}} /></Col>
-                                </Row>
-                            </Container>
-                        </Jumbotron>
+                        />
                     );
                 }
         

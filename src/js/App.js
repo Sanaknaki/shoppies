@@ -33,7 +33,6 @@ export default class App extends React.Component {
     };
 
     _toggleNomination(res) {
-        // var nominate = { 'one': 1, 'two': 2, 'three': 3 };
         var nominations = localStorage.getItem('nominations') ? JSON.parse(localStorage.getItem('nominations')) : {};
         
         if(nominations && nominations[res.imdbID]) {

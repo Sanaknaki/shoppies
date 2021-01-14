@@ -8,7 +8,6 @@ export default class NavBar extends React.Component {
         super(props);
 
         this.state = {
-            mode: "light",
             showModal: false
         }
     }
@@ -21,7 +20,6 @@ export default class NavBar extends React.Component {
                         <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="mr-auto" />
                         <Nav.Link style={{fontSize: "25px"}} onClick={() => this.props._toggleShowModal()}>🏅</Nav.Link>
-                        {/* <Nav.Link style={{fontSize: "25px"}} onClick={() => this.props._toggleDarkLightMode()}>{(this.props.mode) ? `🌞` : `🌚`}</Nav.Link> */}
                     </Navbar.Collapse>
                 </Navbar>
             </React.Fragment>
