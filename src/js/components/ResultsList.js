@@ -100,7 +100,7 @@ export default class ResultsList extends React.Component {
                             isNominated={(nominations && nominations[res.imdbID])}
                             _renderMovieDetails={(id) => this._renderMovieDetails(id)}
                             _toggleViewMovie={(id) => this._toggleViewMovie(id)}
-
+                            _renderButton={(res) => this._renderButton(res)}
                         />
                     );
                 }
