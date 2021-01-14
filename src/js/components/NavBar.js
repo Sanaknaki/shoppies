@@ -20,7 +20,7 @@ export default class NavBar extends React.Component {
                         <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="mr-auto" />
                         <Nav.Link style={{fontSize: "25px"}} onClick={() => this.props._toggleShowModal()}>🏅</Nav.Link>
-                        <Nav.Link style={{fontSize: "25px"}} target="_blank" href="https://github.com/Sanaknaki/shoppies"><i style={{color: "#000000"}} className="fab fa-github"></i></Nav.Link>
+                        <Nav.Link style={{fontSize: "25px"}} target="_blank" href="https://github.com/Sanaknaki/shoppies"><i style={{color: "#3E4348"}} className="fab fa-github"></i></Nav.Link>
                     </Navbar.Collapse>
                 </Navbar>
             </React.Fragment>
