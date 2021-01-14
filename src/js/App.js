@@ -93,7 +93,7 @@ export default class App extends React.Component {
         let { nominations } = this.state;
 
         if(Object.keys(nominations).length === 5) {
-            return <Confetti width={window.innerWidth-50} height={window.innerHeight} numberOfPieces={400} recycle={false}/>;
+            return <Confetti width={window.innerWidth-50} height={window.innerHeight} recycle={false}/>;
         }
 
         return null;

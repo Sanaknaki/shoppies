@@ -44,7 +44,7 @@ export default class ResultsList extends React.Component {
                                         <img style={{display: "flex"}} src={res.Poster} height="100%" width="auto" alt="poster"/>
                                     </Col>
     
-                                    <Col md={6} className="my-auto text-center" style={{color: (nominations[res.imdbID]) ? "#FFFFFF" : "#3E4348"}}>
+                                    <Col md={6} className="my-auto" style={{color: (nominations[res.imdbID]) ? "#FFFFFF" : "#3E4348"}}>
                                         <h3 className="title" style={{display: "block"}}>{res.Title}</h3>
                                         <p>({res.Year})</p>
                                         {this._renderButton(res)}
