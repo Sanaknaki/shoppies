@@ -37,7 +37,7 @@ export default class ResultsList extends React.Component {
                 let list = [];
                 for(let res of this.props.results) {
                     list.push(
-                        <Jumbotron style={{backgroundColor: (nominations && nominations[res.imdbID]) ? "#018060" : "#F2F2F2"}}>
+                        <Jumbotron className={((nominations && nominations[res.imdbID])) ? "nominated-jumbo" : "nominate-jumbo"}>
                             <Container>
                                 <Row>
                                     <Col md={6}>

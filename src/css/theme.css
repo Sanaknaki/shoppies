@@ -27,6 +27,14 @@
     font-weight: 700;
 }
 
+/* Nominate Jumbotron */
+.nominated-jumbo {
+    background-color: #018060 !important;
+}
+
+.nominate-jumbo {
+    background-color: #F2F2F2 !important;
+}
 /* Nominate Button */
 .nominate-btn {
     background-color: #018060 !important;

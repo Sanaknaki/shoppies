@@ -3,17 +3,18 @@ import axios from 'axios';
 
 import { URL } from '../constants';
 
-import '../css/App.css';
-
 import Confetti from 'react-confetti'
 
 import NavBar from './components/NavBar';
+import Footer from './components/Footer';
 import Banner from './components/Banner';
 import SearchBar from './components/SearchBar';
 import ResultsList from './components/ResultsList';
 import NominationsMondal from './components/NominationsModal';
 
 import { Container, Row, Col } from 'react-bootstrap';
+
+import "../css/theme.css";
 
 export default class App extends React.Component {
     constructor(props) {
@@ -27,7 +28,9 @@ export default class App extends React.Component {
             results: [],
             error: null,
 
-            showModal: false
+            showModal: false,
+
+            mode: 0,
         }
     };
 
@@ -77,7 +80,7 @@ export default class App extends React.Component {
 
     _toggleShowModal() {
         this.setState({showModal: !this.state.showModal})
-    }
+    };
 
     _renderModal() {
         let { showModal } = this.state;
@@ -89,7 +92,7 @@ export default class App extends React.Component {
         return null;
     };
 
-    _woo() {
+    _renderConfetti() {
         let { nominations } = this.state;
 
         if(Object.keys(nominations).length === 5) {
@@ -97,15 +100,29 @@ export default class App extends React.Component {
         }
 
         return null;
-    }
+    };
 
-    render() {    
+    _toggleDarkLightMode() {
+        let { mode } = this.state;
+
+        if(mode === 0) {
+            this.setState({
+                mode: mode + 1,
+            });
+        } else {
+            this.setState({
+                mode: mode - 1,
+            });
+        }
+    };
+
+    render() {
         return (
             <React.Fragment>
                 <div className="main">
-                    {this._woo()}
+                    {this._renderConfetti()}
                     <NominationsMondal _toggleNomination={(res) => this._toggleNomination(res)} nominations={this.state.nominations} showModal={this.state.showModal} _toggleShowModal={() => this._toggleShowModal()}/>
-                    <NavBar _toggleShowModal={() => this._toggleShowModal()} />
+                    <NavBar mode={this.state.mode} _toggleShowModal={() => this._toggleShowModal()} _toggleDarkLightMode={() => this._toggleDarkLightMode()} />
                     <Banner nominations={this.state.nominations} />
         
                     <Container style={{paddingTop: "50px"}}>
@@ -116,6 +133,8 @@ export default class App extends React.Component {
                             </Col>
                         </Row>
                     </Container>
+
+                    <Footer />
                 </div>
             </React.Fragment>
         );
