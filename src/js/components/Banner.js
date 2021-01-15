@@ -6,9 +6,9 @@ export default class Banner extends React.Component {
 
     _getNominationsRemaining() {
         if(Object.keys(this.props.nominations).length === 5) {
-            return <span>You completed your nominations 🎉</span>;
+            return <span style={{fontWeight: "800"}}>You completed your nominations 🎉</span>;
         } else {
-            return <span>You have {5 - Object.keys(this.props.nominations).length} nominations left</span>
+            return <span style={{fontWeight: "200"}}>You have <span style={{fontWeight: "800"}}>{5 - Object.keys(this.props.nominations).length}</span> nominations left</span>
         }
     }
 
@@ -19,7 +19,7 @@ export default class Banner extends React.Component {
                     <Row>
                         <Col md={6}>
                             <h1 className="title">Shoppies</h1>
-                            <p style={{fontSize: "25px"}}>Movie Awards For Entrepreneurs</p>
+                            <p style={{fontSize: "25px", fontWeight: "200"}}>Movie Awards For Entrepreneurs</p>
                         </Col>
 
                         <Col md={6} className="my-auto text-center">

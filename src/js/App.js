@@ -47,8 +47,16 @@ export default class App extends React.Component {
     };
 
     _updateQuery(e) {
-        this._getResults(e.target.value);
-        this.setState({ query: e.target.value });
+        if(e.target.value.length > 0) {
+            this._getResults(e.target.value);
+            this.setState({ query: e.target.value });
+        } else {
+            this.setState({
+                results: [],
+                query: "",
+                error: null
+            });
+        }
     };
 
     async _getResults(query) {
