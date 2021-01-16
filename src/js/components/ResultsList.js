@@ -80,6 +80,10 @@ export default class ResultsList extends React.Component {
     _renderList() {
         var nominations = JSON.parse(localStorage.getItem('nominations'));
 
+        if(this.props.fetching) {
+            return <i className="fas fa-search fa-pulse"></i>
+        }
+
         if(this.props.error) {
             return (
                 <p>{this.props.error} ⚠️</p>

@@ -22,7 +22,7 @@ export default class App extends React.Component {
 
         this.state = {
             query: "",
-
+            fetching: false,
             nominations: localStorage.getItem('nominations') ? JSON.parse(localStorage.getItem('nominations')) : {},
 
             results: [],
@@ -60,7 +60,7 @@ export default class App extends React.Component {
     };
 
     async _getResults(query) {
-
+        this.setState({ fetching: true });
         const response = await axios.get(URL + `s=${query}&type=movie`);
 
         if(query.length === 0) {
@@ -81,6 +81,8 @@ export default class App extends React.Component {
                 });
             }
         }
+
+        this.setState({ fetching: false });
     };
 
     _toggleShowModal() {
@@ -108,18 +110,21 @@ export default class App extends React.Component {
     };
 
     render() {
+
+        let { mode, fetching, nominations, showModal, results, query, error } = this.state;
+
         return (
             <React.Fragment>
                 {this._renderConfetti()}
                 <div className="main">
-                    <NominationsModal _toggleNomination={(res) => this._toggleNomination(res)} nominations={this.state.nominations} showModal={this.state.showModal} _toggleShowModal={() => this._toggleShowModal()}/>
-                    <NavBar mode={this.state.mode} _toggleShowModal={() => this._toggleShowModal()} _toggleDarkLightMode={() => this._toggleDarkLightMode()} />
-                    <Banner nominations={this.state.nominations} />
+                    <NominationsModal _toggleNomination={(res) => this._toggleNomination(res)} nominations={nominations} showModal={showModal} _toggleShowModal={() => this._toggleShowModal()}/>
+                    <NavBar mode={mode} _toggleShowModal={() => this._toggleShowModal()} _toggleDarkLightMode={() => this._toggleDarkLightMode()} />
+                    <Banner nominations={nominations} />
                     <Container style={{paddingTop: "50px"}}>
                         <Row>
                             <Col md={{span: 8, offset: 2}}>
-                                <SearchBar query={this.state.query} _updateQuery={(e) => this._updateQuery(e)} />
-                                <ResultsList _toggleNomination={(res) => this._toggleNomination(res)} results={this.state.results} error={this.state.error}/>
+                                <SearchBar query={query} _updateQuery={(e) => this._updateQuery(e)} />
+                                <ResultsList fetching={fetching} _toggleNomination={(res) => this._toggleNomination(res)} results={results} error={error}/>
                             </Col>
                         </Row>
                     </Container>
