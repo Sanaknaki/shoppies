@@ -15,7 +15,7 @@ export default class Nomination extends React.Component {
                         <Col md={8} className="my-auto text-center">
                             <h5 className="title" style={{display: "block"}}>{this.props.nominations[this.props.nomination].Title}</h5>
                             <p>({this.props.nominations[this.props.nomination].Year})</p>
-                            <Button className="de-nominate-btn" onClick={() => this.props._toggleNomination(this.props.nominations[this.props.nomination])}>De-Nominate</Button>
+                            <Button className="de-nominate-btn" onClick={() => this.props._toggleNomination(this.props.nominations[this.props.nomination])}>Remove nomination</Button>
                         </Col>
                     </Row>
                 </Container>

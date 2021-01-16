@@ -22,7 +22,7 @@ export default class ResultsList extends React.Component {
             return <Button className="nominate-btn" onClick={() => this.props._toggleNomination(res)}>Nominate</Button>;
         } else {
             if(nominations[res.imdbID]) {
-                return <Button className="de-nominate-btn" onClick={() => this.props._toggleNomination(res)}>De-Nominate</Button>;
+                return <Button className="de-nominate-btn" onClick={() => this.props._toggleNomination(res)}>Remove nomination</Button>;
             } else if(Object.keys(nominations).length < 5){
                 return <Button className="nominate-btn" onClick={() => this.props._toggleNomination(res)}>Nominate</Button>;
             } else {
