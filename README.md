@@ -9,9 +9,10 @@
 
 ## Features
 ✨ Implemented Features <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 🖌 Dynamic components <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 🔔 Activity notifications <br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 📝 More in-depth movie details <br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 💾 Save & remember nominations <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 🖌 Dynamic components <br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 🎉 Confetti <br />
 
 ✨ Back-log Features <br/>
