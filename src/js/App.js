@@ -12,7 +12,7 @@ import SearchBar from './components/SearchBar';
 import ResultsList from './components/ResultsList';
 import NominationsModal from './components/modal/NominationsModal';
 
-import { Container, Row, Col } from 'react-bootstrap';
+import { Container, Row, Col, Toast } from 'react-bootstrap';
 
 import "../css/theme.css";
 
@@ -29,22 +29,85 @@ export default class App extends React.Component {
             error: null,
 
             showModal: false,
+
+            notification: null
         }
     };
 
     _toggleNomination(res) {
         var nominations = localStorage.getItem('nominations') ? JSON.parse(localStorage.getItem('nominations')) : {};
-        
+        let nominated = false;
+
         if(nominations && nominations[res.imdbID]) {
             delete nominations[res.imdbID];
+            
         } else {
             nominations[res.imdbID] = res;
+            nominated = true;
         }
 
         localStorage.setItem('nominations', JSON.stringify(nominations));
 
         this.setState({ nominations });
+
+        this._appendNotification(res, nominated);
     };
+
+    _appendNotification(res, nominated=false) {
+        let { notification } = this.state;
+
+        let body = null;
+
+        if(nominated) {
+            body = (
+                <React.Fragment>
+                    <Toast.Header closeButton={false}>
+                        👍🏽 &nbsp;&nbsp; <strong>Nominated!</strong>
+                    </Toast.Header>
+                    <Toast.Body>You nominated {res.Title}!</Toast.Body>
+                </React.Fragment>
+            );
+        } else {
+            body = (
+                <React.Fragment>
+                    <Toast.Header closeButton={false}>
+                        👎🏽 &nbsp;&nbsp; <strong>Removed Nominated!</strong>
+                    </Toast.Header>
+                    <Toast.Body>You removed the nomination for {res.Title}!</Toast.Body>
+                </React.Fragment>
+            );
+        }
+
+        notification = (
+            <Toast 
+                style={{
+                    minWidth: "350px",
+                    zIndex: "9999",
+                    position: "fixed",
+                    bottom: 10,
+                    right: 10,
+                }}
+                onClose={() => this.setState({notification: null})} 
+                show={true} 
+                delay={6000} 
+                
+                autohide>
+                {body}
+            </Toast>
+        );
+
+        this.setState({ notification });
+    };
+
+    _renderNotifications() {
+        let { notification } = this.state;
+
+        return (
+            <React.Fragment>
+                {notification}
+            </React.Fragment>
+        )
+    }
 
     _updateQuery(e) {
         if(e.target.value.length > 0) {
@@ -111,7 +174,7 @@ export default class App extends React.Component {
 
     render() {
 
-        let { mode, fetching, nominations, showModal, results, query, error } = this.state;
+        let { mode, fetching, nominations, showModal, results, query, error, notification } = this.state;
 
         return (
             <React.Fragment>
@@ -119,6 +182,7 @@ export default class App extends React.Component {
                 <div className="main">
                     <NominationsModal _toggleNomination={(res) => this._toggleNomination(res)} nominations={nominations} showModal={showModal} _toggleShowModal={() => this._toggleShowModal()}/>
                     <NavBar mode={mode} _toggleShowModal={() => this._toggleShowModal()} _toggleDarkLightMode={() => this._toggleDarkLightMode()} />
+                    {(notification) ? this._renderNotifications() : null}
                     <Banner nominations={nominations} />
                     <Container style={{paddingTop: "50px"}}>
                         <Row>
@@ -128,7 +192,6 @@ export default class App extends React.Component {
                             </Col>
                         </Row>
                     </Container>
-
                     <Footer />
                 </div>
             </React.Fragment>
