@@ -62,7 +62,7 @@ export default class App extends React.Component {
             body = (
                 <React.Fragment>
                     <Toast.Header closeButton={false}>
-                        👍🏽 &nbsp;&nbsp; <strong>Nominated!</strong>
+                        👍🏽 &nbsp; <strong>Nominated!</strong>
                     </Toast.Header>
                     <Toast.Body>You nominated {res.Title}!</Toast.Body>
                 </React.Fragment>
@@ -71,7 +71,7 @@ export default class App extends React.Component {
             body = (
                 <React.Fragment>
                     <Toast.Header closeButton={false}>
-                        👎🏽 &nbsp;&nbsp; <strong>Removed Nominated!</strong>
+                        👎🏽 &nbsp; <strong>Removed Nominated!</strong>
                     </Toast.Header>
                     <Toast.Body>You removed the nomination for {res.Title}!</Toast.Body>
                 </React.Fragment>
