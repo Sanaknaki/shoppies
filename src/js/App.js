@@ -89,7 +89,7 @@ export default class App extends React.Component {
                 }}
                 onClose={() => this.setState({notification: null})} 
                 show={true} 
-                delay={6000} 
+                delay={4000} 
                 
                 autohide>
                 {body}
